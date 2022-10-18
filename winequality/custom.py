@@ -2,11 +2,12 @@ import mlflow
 import pandas as pd
 
 def load_model(code_dir):
-    print(code_dir)
     model = mlflow.pyfunc.load_model(code_dir)
     return model
 
 
 def score(data, model, **kwargs):
     predictions = model.predict(data)
-    return pd.DataFrame(data = predictions, columns=['Predictions'])
+    df_predictions = pd.DataFrame(data=predictions, columns=['True'])
+    df_predictions['False'] = 1-df_predictions['True']
+    return df_predictions
