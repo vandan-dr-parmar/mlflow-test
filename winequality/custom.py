@@ -9,4 +9,4 @@ def load_model(code_dir):
 
 def score(data, model, **kwargs):
     predictions = model.predict(data)
-    return predictions
+    return pd.DataFrame(data = predictions, columns=['Predictions'])
