@@ -2,8 +2,9 @@ import mlflow
 
 
 def load_model(code_dir):
-    mlflow.pyfunc.load_model(code_dir + 'MLmodel')
-
+    model = mlflow.pyfunc.load_model(code_dir + 'MLmodel')
+    return model
 
 def score(data, model):
-    return model.predict(data)
+    predictions = model.predict(data)
+    return predictions
